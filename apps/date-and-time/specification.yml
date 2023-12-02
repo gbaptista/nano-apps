@@ -1,0 +1,9 @@
+---
+name: date-and-time
+description: Returns the current date and time in the ISO 8601 format for a given timezone.
+parameters:
+  type: object
+  properties:
+    timezone:
+      type: string
+      description: A string represents the timezone to be used for providing a datetime, following the IANA (Internet Assigned Numbers Authority) Time Zone Database. Examples include "Asia/Tokyo" and "Europe/Paris". If not provided, the default timezone is the user's current timezone.

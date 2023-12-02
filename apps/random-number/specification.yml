@@ -1,0 +1,15 @@
+---
+name: random-number
+description: Generates a random number within a given range.
+parameters:
+  type: object
+  properties:
+    from:
+      type: integer
+      description: The minimum expected number for random generation.
+    to:
+      type: integer
+      description: The maximum expected number for random generation.
+  required:
+    - from
+    - to

@@ -1,0 +1,11 @@
+---
+name: advanced-calculator
+description: A sophisticated calculator using the GNU Octave command-line interface, which is capable of performing both arithmetic and symbolic mathematical operations. This script assumes that the GNU Octave and the 'symbolic' package (for symbolic computations) are already installed and available on the system. It handles a wide range of calculations, from basic arithmetic like addition, subtraction, multiplication, and division, to more complex operations such as derivatives and integrals.
+parameters:
+  type: object
+  properties:
+    expression:
+      type: string
+      description: A string representing a mathematical expression to be evaluated. For example, "2+3" or "syms x; disp(diff(cos(x) + 3*x^2, x))" for calculating the derivative of cos(x) + 3x^2 using GNU Octave and the 'symbolic' package. The expression should be in a format compatible with the GNU Octave command-line interface. Importantly, do not add a semicolon ';' at the end of the expression as it suppresses the output in Octave.
+  required:
+    - expression

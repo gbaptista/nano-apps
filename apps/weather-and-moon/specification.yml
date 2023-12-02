@@ -1,0 +1,9 @@
+---
+name: weather-and-moon
+description: Fetch detailed weather information including current conditions, astronomical data, and a three-day forecast using wttr.in, a weather forecast service. This tool provides specific data about the temperature, wind speed and direction, humidity, visibility, pressure, and weather description for the current moment. It also includes sunset, sunrise, moonrise, moonset times, moon phase, and moon illumination percentage, in addition to the average, minimum, and maximum temperatures for the upcoming days.
+parameters:
+  type: object
+  properties:
+    location:
+      type: string
+      description: An optional parameter that takes in a string representing the location for which to fetch weather information. It accepts city names, ZIP/postal codes, airport codes, or latitude and longitude coordinates. For example, 'New York', '10001', 'JFK', '48.8566,2.3522'. If no location is provided, the weather information for the user's current location is retrieved.

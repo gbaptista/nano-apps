@@ -1,0 +1,18 @@
+---
+name: sh
+description: It provides access to the computer user's system and data and can be used to execute shell commands similar to those in a Linux terminal. It can send commands to softwares, extract information, and perform actions.
+parameters:
+  type: object
+  properties:
+    command:
+      type: array
+      items:
+        type: string
+      description: An array of strings that represents a shell command along with its arguments or options. For instance, `["df", "-h"]` executes the `df -h` command, where each array element specifies either the command itself or an associated argument/option.
+    piped_commands:
+      type: array
+      items:
+        type: array
+        items:
+          type: string
+      description: An array of string arrays, where each array represents a shell command to be executed in a piped sequence. For example, `[["echo", "hello world"], ["tr", "a-z", "A-Z"]]` would execute `echo hello world | tr a-z A-Z`.

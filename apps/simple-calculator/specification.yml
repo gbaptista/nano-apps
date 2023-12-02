@@ -1,0 +1,17 @@
+---
+name: simple-calculator
+description: A simple calculator that uses the GNU 'bc' programming language to perform arithmetic operations and more complex calculations. This tool can handle addition, subtraction, multiplication, division, and modulus operations as well as exponentiation and functions among others, with arbitrary precision.
+parameters:
+  type: object
+  properties:
+    expression:
+      type: string
+      description: |
+        A string representing a mathematical expression or a series of expressions to be evaluated using the 'bc' command syntax. Expressions can range from basic arithmetic like "2+3" to more complex calculations such as defining and using custom functions, control statements, loops, and setting precision using the 'scale' variable to get decimal results in division. For example, to get the result of 3 divided by 2 as a decimal:
+        expression: "scale=1; 3/2"
+        This sets the 'scale' to 1, which means one decimal place is considered in division operations, giving a result of 1.5 instead of just 1. Multi-line scripts should be separated by semicolons and newline characters. Example:
+        To calculate the average of two numbers:
+        expression: "define avg(x, y) { return (x + y) / 2; }; scale=1; avg(20, 30)"
+        This defines a function 'avg' that averages two numbers with decimal precision included and then uses it to average 20 and 30, which results in 25.0.
+  required:
+    - expression
