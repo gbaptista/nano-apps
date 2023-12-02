@@ -7,7 +7,7 @@ meta:
   license: CC0-1.0
   description: A helpful assistant.
 
-tools:
+tools: {tools}
 
 safety:
   functions:

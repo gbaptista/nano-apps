@@ -36,6 +36,6 @@
       template      (slurp template-path)
       app-dirs      (list-app-dirs "apps/")
       apps-content  (concatenate-app-contents app-dirs)
-      final-content (str/replace-first template "tools:\n" (str "tools:" apps-content))]
+      final-content (str/replace-first template "{tools}" apps-content)]
   (spit output-path final-content)
   (println (str "Cartridge successfully generated at " output-path)))
