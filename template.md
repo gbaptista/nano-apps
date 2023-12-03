@@ -32,6 +32,12 @@ Today is Saturday.
 🤖> |
 ```
 
+## Disclaimer
+
+This is an experimental, early-stage project. Nano Apps may be dangerous, so be careful with what you try to build; they could execute destructive actions on your computer. Also, be mindful of your budget: Ensure you monitor and budget whatever provider you are using. Nano Apps may produce unexpectedly lengthy content or infinite/too-long loops that could cause your costs to skyrocket.
+
+This software is distributed under the [MIT License](https://github.com/gbaptista/nano-apps/blob/main/LICENSE), which includes a disclaimer of warranty. Furthermore, the authors assume no responsibility for any damage or costs that may arise from the use of this experimental, early-stage project. Use Nano Apps at your own risk.
+
 ## All Nano Apps
 
 {nano-apps}
