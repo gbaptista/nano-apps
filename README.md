@@ -59,6 +59,8 @@ Today is Saturday.
 🤖> |
 ```
 
+You can exit the REPL by typing `exit`.
+
 ## All Nano Apps
 
 ### Advanced Calculator
@@ -356,6 +358,8 @@ The current time in UTC is 14:10:05 on December 2, 2023.
 
 🤖> |
 ```
+
+You can exit the REPL by typing `exit`.
 
 ### Running Tests
 
