@@ -5,7 +5,6 @@ Nano Apps are tiny applications that can be embedded in [Nano Bots](https://spec
 Nano Apps can be written in [Lua](https://www.lua.org/about.html), [Fennel](https://fennel-lang.org), or [Clojure](https://clojure.org). This specific repository has chosen to use Clojure for its Nano Apps.
 
 - [Quick Start](#quick-start)
-- [Disclaimer](#disclaimer)
 - [All Nano Apps](#all-nano-apps)
     - [Advanced Calculator](#advanced-calculator)
     - [Date and Time](#date-and-time)
@@ -32,6 +31,7 @@ Nano Apps can be written in [Lua](https://www.lua.org/about.html), [Fennel](http
     - [Prompt Engineering](#prompt-engineering)
     - [Tools (Functions) Documentation](#tools-functions-documentation)
     - [Specifications](#specifications)
+- [Disclaimer](#disclaimer)
 
 ## Quick Start
 
@@ -58,12 +58,6 @@ Today is Saturday.
 
 🤖> |
 ```
-
-## Disclaimer
-
-This is an experimental, early-stage project. Nano Apps may be dangerous, so be careful with what you try to build; they could execute destructive actions on your computer. Also, be mindful of your budget: Ensure you monitor and budget whatever provider you are using. Nano Apps may produce unexpectedly lengthy content or infinite/too-long loops that could cause your costs to skyrocket.
-
-This software is distributed under the [MIT License](https://github.com/gbaptista/nano-apps/blob/main/LICENSE), which includes a disclaimer of warranty. Furthermore, the authors assume no responsibility for any damage or costs that may arise from the use of this experimental, early-stage project. Use Nano Apps at your own risk.
 
 ## All Nano Apps
 
@@ -386,7 +380,10 @@ bb tasks/generate-readme.clj
 Trick for automatically updating the `README.md` when `template.md` changes:
 
 ```sh
-sudo apt install inotify-tools
+sudo pacman -S inotify-tools
+sudo apt-get install inotify-tools
+sudo dnf install inotify-tools
+sudo yum install inotify-tools
 
 while inotifywait -e modify -e create template.md apps/*/README.md; do bb tasks/generate-readme.clj; done
 ```
@@ -480,5 +477,11 @@ Returning `()` as the output of a function can cause OpenAI models to request th
 - [Function-calling with an OpenAPI specification](https://cookbook.openai.com/examples/function_calling_with_an_openapi_spec)
 
 ### Specifications
+- [Nano Bots](https://spec.nbots.io/#/README?id=nano-bots)
 - [JSON Schema](https://json-schema.org)
-- [OpenAPI Specification](https://swagger.io/specification/)
+
+## Disclaimer
+
+This is an experimental, early-stage project. Nano Apps may be dangerous, so be careful with what you try to build; they could execute destructive actions on your computer. Also, be mindful of your budget: Ensure you monitor and budget whatever provider you are using. Nano Apps may produce unexpectedly lengthy content or infinite/too-long loops that could cause your costs to skyrocket.
+
+This software is distributed under the [MIT License](https://github.com/gbaptista/nano-apps/blob/main/LICENSE), which includes a disclaimer of warranty. Furthermore, the authors assume no responsibility for any damage or costs that may arise from the use of this experimental, early-stage project. Use Nano Apps at your own risk.
