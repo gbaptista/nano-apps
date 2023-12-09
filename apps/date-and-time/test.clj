@@ -18,6 +18,8 @@
   (testing "Nano App"
     (is (= [:date-time :timezone] (keys (h.run-app app-path))))
 
+    (is (= [:date-time :timezone] (keys (h.run-app app-path {"timezone" ""}))))
+
     (is (= "America/New_York" (:timezone (h.run-app app-path {"timezone" "America/New_York"}))))
     (is (= "dddd-dd-ddTdd:dd:dd-dd:dd"
            (str/replace (:date-time (h.run-app app-path {"timezone" "America/New_York"})) #"\d" "d")))

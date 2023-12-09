@@ -6,6 +6,6 @@ parameters:
   properties:
     expression:
       type: string
-      description: A string representing a mathematical expression to be evaluated. For example, "2+3" or "syms x; disp(diff(cos(x) + 3*x^2, x))" for calculating the derivative of cos(x) + 3x^2 using GNU Octave and the 'symbolic' package. The expression should be in a format compatible with the GNU Octave command-line interface. Importantly, do not add a semicolon ';' at the end of the expression as it suppresses the output in Octave.
+      description: A string representing a mathematical expression to be evaluated. For example, "2+3" or "syms x; disp(diff(cos(x) + 3*x^2, x))" for calculating the derivative of cos(x) + 3x^2 using GNU Octave and the 'symbolic' package. The expression should be in a format compatible with the GNU Octave command-line interface. Importantly, do not add a semicolon ';' at the end of the expression as it suppresses the output in Octave. Remember that you need to declare variables. Using `diff(3*x^2 + 5*x + 2, x)` will result in an error. The correct syntax is `syms x; diff(3*x^2 + 5*x + 2, x)`.
   required:
     - expression
