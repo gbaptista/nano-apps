@@ -105,10 +105,9 @@ bb tasks/generate-readme.clj
 Trick for automatically updating the `README.md` when `template.md` changes:
 
 ```sh
-sudo pacman -S inotify-tools
-sudo apt-get install inotify-tools
-sudo dnf install inotify-tools
-sudo yum install inotify-tools
+sudo pacman -S inotify-tools # Arch / Manjaro
+sudo apt-get install inotify-tools # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install inotify-tools # Fedora / CentOS / RHEL
 
 while inotifywait -e modify -e create template.md apps/*/README.md; do bb tasks/generate-readme.clj; done
 ```

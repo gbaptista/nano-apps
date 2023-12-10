@@ -70,10 +70,9 @@ Provides [GNU Octave](https://octave.org) for arithmetic and symbolic math, incl
 Installing GNU Octave:
 
 ```sh
-sudo apt install octave
-sudo pacman -S octave
-sudo yum install octave
-sudo dnf install octave
+sudo pacman -S octave # Arch / Manjaro
+sudo apt-get install octave # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install octave # Fedora / CentOS / RHEL
 ```
 
 After installation, you need to install the `symbolic` package: `pkg install -forge symbolic`
@@ -228,10 +227,9 @@ Provide [GNU bc](https://www.gnu.org/software/bc/) for performing arithmetic cal
 Installing GNU bc:
 
 ```sh
-sudo apt install bc
-sudo pacman -S bc
-sudo yum install bc
-sudo dnf install bc
+sudo pacman -S bc # Arch / Manjaro
+sudo apt-get install bc # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install bc # Fedora / CentOS / RHEL
 ```
 
 Examples:
@@ -384,10 +382,9 @@ bb tasks/generate-readme.clj
 Trick for automatically updating the `README.md` when `template.md` changes:
 
 ```sh
-sudo pacman -S inotify-tools
-sudo apt-get install inotify-tools
-sudo dnf install inotify-tools
-sudo yum install inotify-tools
+sudo pacman -S inotify-tools # Arch / Manjaro
+sudo apt-get install inotify-tools # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install inotify-tools # Fedora / CentOS / RHEL
 
 while inotifywait -e modify -e create template.md apps/*/README.md; do bb tasks/generate-readme.clj; done
 ```

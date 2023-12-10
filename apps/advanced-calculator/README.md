@@ -5,10 +5,9 @@ Provides [GNU Octave](https://octave.org) for arithmetic and symbolic math, incl
 Installing GNU Octave:
 
 ```sh
-sudo apt install octave
-sudo pacman -S octave
-sudo yum install octave
-sudo dnf install octave
+sudo pacman -S octave # Arch / Manjaro
+sudo apt-get install octave # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install octave # Fedora / CentOS / RHEL
 ```
 
 After installation, you need to install the `symbolic` package: `pkg install -forge symbolic`

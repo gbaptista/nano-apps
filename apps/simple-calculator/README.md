@@ -5,10 +5,9 @@ Provide [GNU bc](https://www.gnu.org/software/bc/) for performing arithmetic cal
 Installing GNU bc:
 
 ```sh
-sudo apt install bc
-sudo pacman -S bc
-sudo yum install bc
-sudo dnf install bc
+sudo pacman -S bc # Arch / Manjaro
+sudo apt-get install bc # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install bc # Fedora / CentOS / RHEL
 ```
 
 Examples:
