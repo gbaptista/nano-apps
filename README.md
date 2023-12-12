@@ -184,7 +184,8 @@ You have two media players available for control:
 1. Chromium, with an instance ID of 12231.
 2. Plasma Browser Integration.
 
-These players can be controlled with play, pause, stop, and various other media control commands.
+These players can be controlled with play, pause,
+stop, and various other media control commands.
 
 🤖> what's playing on plasma?
 
@@ -198,19 +199,25 @@ plasma-browser-integration xesam:artist              Polyphia
 plasma-browser-integration xesam:title               Polyphia - Ego Death feat. Steve Vai (Official Music Video)
 plasma-browser-integration xesam:url                 https://www.youtube.com/watch?v=1JNmz17gnMw
 
-Currently, on Plasma Browser Integration, the track "Ego Death" by Polyphia featuring Steve Vai is playing. This is the official music video on YouTube. The artwork for the track is available as well, which you would recognize from the video thumbnail on YouTube.
+Currently, on Plasma Browser Integration, the track
+"Ego Death" by Polyphia featuring Steve Vai is playing.
+This is the official music video on YouTube.
+The artwork for the track is available as well, which
+you would recognize from the video thumbnail on YouTube.
 
 🤖> pause the song
 
 media-player-control {"command":"pause","player":"plasma-browser-integration"}
 
-The song has been paused on Plasma Browser Integration. If you wish to resume playback, just let me know!
+The song has been paused on Plasma Browser Integration.
+If you wish to resume playback, just let me know!
 
 🤖> resume playing
 
 media-player-control {"command":"play","player":"plasma-browser-integration"}
 
-The song is now playing again on Plasma Browser Integration. Enjoy the music!
+The song is now playing again on Plasma Browser Integration.
+Enjoy the music!
 
 🤖> go back to the beginning of the song
 
