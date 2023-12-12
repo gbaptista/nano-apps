@@ -8,6 +8,7 @@ Nano Apps can be written in [Lua](https://www.lua.org/about.html), [Fennel](http
 - [All Nano Apps](#all-nano-apps)
     - [Advanced Calculator](#advanced-calculator)
     - [Date and Time](#date-and-time)
+    - [Media Player Control](#media-player-control)
     - [Random Numbers](#random-numbers)
     - [Shell Commands](#shell-commands)
     - [Simple Calculator](#simple-calculator)
@@ -22,6 +23,7 @@ Nano Apps can be written in [Lua](https://www.lua.org/about.html), [Fennel](http
 - [Writing Great Nano Apps](#writing-great-nano-apps)
     - [Principles](#principles)
     - [Prompt Engineering](#prompt-engineering)
+    - [Give It Room](#give-it-room)
     - [Concise Outputs](#concise-outputs)
     - [Output Fidelity](#output-fidelity)
     - [Handling Errors](#handling-errors)
@@ -153,6 +155,77 @@ The current time is 12:22:01 PM in the timezone America/Sao Paulo.
 🤖> What day of the week is it today?
 
 Today is Saturday.
+
+🤖> |
+```
+
+### Media Player Control
+
+Provides [Playerctl](https://github.com/altdesktop/playerctl) for controlling media players that implement the [MPRIS](https://specifications.freedesktop.org/mpris-spec/latest/) D-Bus Interface Specification.
+
+Installing Playerctl:
+
+```sh
+sudo pacman -S playerctl # Arch / Manjaro
+sudo apt-get install playerctl # Debian / Ubuntu / Raspberry Pi OS
+sudo dnf install playerctl # Fedora / CentOS / RHEL
+```
+
+Examples:
+```text
+🤖> which players do i have?
+
+media-player-control {"command":"list"}
+chromium.instance12231
+plasma-browser-integration
+
+
+You have two media players available for control:
+
+1. Chromium, with an instance ID of 12231.
+2. Plasma Browser Integration.
+
+These players can be controlled with play, pause, stop, and various other media control commands.
+
+🤖> what's playing on plasma?
+
+media-player-control {"command":"metadata","player":"plasma-browser-integration"}
+plasma-browser-integration kde:mediaSrc              blob:https://www.youtube.com/9c1414f1-5ae7-43d3-a7e2-45f519cdb0a9
+plasma-browser-integration kde:pid                   12231
+plasma-browser-integration mpris:artUrl              https://i.ytimg.com/vi/1JNmz17gnMw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDr0ppBmCZeRzvIfsuDAY7BxKYeBQ
+plasma-browser-integration mpris:length              350041000
+plasma-browser-integration mpris:trackid             '/org/kde/plasma/browser_integration/1337'
+plasma-browser-integration xesam:artist              Polyphia
+plasma-browser-integration xesam:title               Polyphia - Ego Death feat. Steve Vai (Official Music Video)
+plasma-browser-integration xesam:url                 https://www.youtube.com/watch?v=1JNmz17gnMw
+
+
+Currently, on Plasma Browser Integration, the track "Ego Death" by Polyphia featuring Steve Vai is playing. This is the official music video on YouTube. The artwork for the track is available as well, which you would recognize from the video thumbnail on YouTube.
+
+🤖> pause the song
+
+media-player-control {"command":"pause","player":"plasma-browser-integration"}
+
+
+The song has been paused on Plasma Browser Integration. If you wish to resume playback, just let me know!
+
+🤖> resume playing
+
+media-player-control {"command":"play","player":"plasma-browser-integration"}
+
+
+The song is now playing again on Plasma Browser Integration. Enjoy the music!
+
+🤖> go back to the beginning of the song
+
+media-player-control {"command":"position","player":"plasma-browser-integration","option":"0"}
+
+
+I've reset the song to the beginning for you.
+
+🤖> turn up the volume to the maximum
+
+media-player-control {"command":"volume","player":"plasma-browser-integration","option":"1.0"}
 
 🤖> |
 ```
@@ -336,7 +409,14 @@ From a base template, generate a cartridge with all Nano Apps included:
 ```sh
 bb tasks/generate-cartridge.clj [CARTRIDGE-TEMPLATE] [OUTPUT-FILE]
 
+# If you don't want to include your private Nano Apps:
+bb tasks/generate-cartridge.clj [CARTRIDGE-TEMPLATE] [OUTPUT-FILE] --no-private
+
+
 bb tasks/generate-cartridge.clj cartridges/template.yml cartridge.yml
+# => cartridge.yml
+
+bb tasks/generate-cartridge.clj cartridges/template.yml cartridge.yml --no-private
 # => cartridge.yml
 ```
 
@@ -369,6 +449,11 @@ bb tasks/run-tests.clj
 Running individual tests:
 ```sh
 bb apps/simple-calculator/test.clj
+```
+
+Running all tests, excluding private Nano Apps:
+```sh
+bb tasks/run-tests.clj --no-private 
 ```
 
 ### Updating the README
@@ -414,6 +499,16 @@ The same applies to private cartridge templates:
 cartridges/your-name@your-cartridge-template.yml
 ```
 
+You can exclude your private Nano Apps from cartridge generation with:
+```sh
+bb tasks/generate-cartridge.clj cartridges/template.yml cartridge.yml --no-private
+```
+
+Running all tests, excluding private Nano Apps:
+```sh
+bb tasks/run-tests.clj --no-private 
+```
+
 ## Writing Great Nano Apps
 
 ### Principles
@@ -425,6 +520,14 @@ A Nano App is only as good as the AI provider's capability to leverage it. There
 - [Prompt Engineering Guide](https://www.promptingguide.ai)
 - [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
 - [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
+
+### Give It Room
+
+Sometimes you may feel like, "this is too complex," or "it will not be useful," or "why would it use this," etc. You may be surprised by the creative ways Nano Apps are used by models.
+
+For a concrete example, the [Media Player Control](#media-player-control) has commands that you may think aren't worth providing. But, if you spend some time playing around, you'll have many "wow" moments about how the model uses it to achieve what you are asking for.
+
+So, _give it room_ to be creative and explore, don't hold back on functionality just because you feel unsure.
 
 ### Concise Outputs
 
@@ -450,7 +553,7 @@ It may be tempting to shorten it to return only `6` instead of `ans = 6`. Don't 
 
 ### Handling Errors
 
-Keep errors consise ([Concise Outputs](#concise-outputs)) and helpfull ([Prompt Engineering](#prompt-engineering)).
+Keep errors concise ([Concise Outputs](#concise-outputs)) and helpfull ([Prompt Engineering](#prompt-engineering)).
 
 When using Nano Apps as a proxy for popular software, prioritize the sharing of the original error output from the software ([Output Fidelity](#output-fidelity)). Some software generates lengthy error stack traces. In this scenario, it is best to provide alternative custom short messages or restrict the output size without sacrificing necessary detail. Balance [Output Fidelity](#output-fidelity) with [Concise Outputs](#concise-outputs).
 

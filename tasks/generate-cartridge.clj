@@ -3,9 +3,12 @@
 (require '[babashka.fs :as fs])
 (require '[clojure.string :as str])
 
-(defn list-app-dirs [dir]
-  (->> (fs/glob dir "**/app.clj")
-       (map fs/parent)))
+(defn list-app-dirs [dir no-private]
+  (let [paths (->> (fs/glob dir "**/app.clj")
+                   (map fs/parent))]
+    (if no-private
+      (filter (fn [path] (not (str/includes? path "@"))) paths)
+      paths)))
 
 (defn format-specification [spec-contents]
   (let [lines (str/split-lines spec-contents)
@@ -33,9 +36,14 @@
 (let [args          *command-line-args*
       template-path (first args)
       output-path   (second args)
+      option        (nth args 2 nil)
+      no-private    (= "--no-private" option)
       template      (slurp template-path)
-      app-dirs      (list-app-dirs "apps/")
+      app-dirs      (list-app-dirs "apps/" no-private)
       apps-content  (concatenate-app-contents app-dirs)
       final-content (str/replace-first template "{tools}" apps-content)]
   (spit output-path final-content)
-  (println (str "Cartridge successfully generated at " output-path)))
+  (if no-private
+    (println (str "Cartridge successfully generated (without private apps) at " output-path))
+    (println (str "Cartridge successfully generated at " output-path))))
+

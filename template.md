@@ -59,7 +59,14 @@ From a base template, generate a cartridge with all Nano Apps included:
 ```sh
 bb tasks/generate-cartridge.clj [CARTRIDGE-TEMPLATE] [OUTPUT-FILE]
 
+# If you don't want to include your private Nano Apps:
+bb tasks/generate-cartridge.clj [CARTRIDGE-TEMPLATE] [OUTPUT-FILE] --no-private
+
+
 bb tasks/generate-cartridge.clj cartridges/template.yml cartridge.yml
+# => cartridge.yml
+
+bb tasks/generate-cartridge.clj cartridges/template.yml cartridge.yml --no-private
 # => cartridge.yml
 ```
 
@@ -92,6 +99,11 @@ bb tasks/run-tests.clj
 Running individual tests:
 ```sh
 bb apps/simple-calculator/test.clj
+```
+
+Running all tests, excluding private Nano Apps:
+```sh
+bb tasks/run-tests.clj --no-private 
 ```
 
 ### Updating the README
@@ -137,6 +149,16 @@ The same applies to private cartridge templates:
 cartridges/your-name@your-cartridge-template.yml
 ```
 
+You can exclude your private Nano Apps from cartridge generation with:
+```sh
+bb tasks/generate-cartridge.clj cartridges/template.yml cartridge.yml --no-private
+```
+
+Running all tests, excluding private Nano Apps:
+```sh
+bb tasks/run-tests.clj --no-private 
+```
+
 ## Writing Great Nano Apps
 
 ### Principles
@@ -148,6 +170,14 @@ A Nano App is only as good as the AI provider's capability to leverage it. There
 - [Prompt Engineering Guide](https://www.promptingguide.ai)
 - [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
 - [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/)
+
+### Give It Room
+
+Sometimes you may feel like, "this is too complex," or "it will not be useful," or "why would it use this," etc. You may be surprised by the creative ways Nano Apps are used by models.
+
+For a concrete example, the [Media Player Control](#media-player-control) has commands that you may think aren't worth providing. But, if you spend some time playing around, you'll have many "wow" moments about how the model uses it to achieve what you are asking for.
+
+So, _give it room_ to be creative and explore, don't hold back on functionality just because you feel unsure.
 
 ### Concise Outputs
 
@@ -173,7 +203,7 @@ It may be tempting to shorten it to return only `6` instead of `ans = 6`. Don't 
 
 ### Handling Errors
 
-Keep errors consise ([Concise Outputs](#concise-outputs)) and helpfull ([Prompt Engineering](#prompt-engineering)).
+Keep errors concise ([Concise Outputs](#concise-outputs)) and helpfull ([Prompt Engineering](#prompt-engineering)).
 
 When using Nano Apps as a proxy for popular software, prioritize the sharing of the original error output from the software ([Output Fidelity](#output-fidelity)). Some software generates lengthy error stack traces. In this scenario, it is best to provide alternative custom short messages or restrict the output size without sacrificing necessary detail. Balance [Output Fidelity](#output-fidelity) with [Concise Outputs](#concise-outputs).
 

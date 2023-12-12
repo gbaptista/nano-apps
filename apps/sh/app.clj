@@ -1,7 +1,5 @@
 (require '[clojure.java.shell :refer [sh]])
 
-(require '[clojure.pprint :as pprint])
-
 (defn run-command [command & [input]]
   (let [args (if input (conj command :in input) command)
         result (apply sh args)

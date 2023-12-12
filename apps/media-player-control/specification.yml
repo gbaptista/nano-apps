@@ -1,0 +1,38 @@
+name: media-player-control
+description: Provides access to playerctl, which, through MPRIS, offers control commands to media players.
+parameters:
+  type: object
+  properties:
+    command:
+      type: string
+      description: |
+        The command to be performed, valid options are:
+        - `list`: List the names of players who are running and can be controlled or inspected.
+        - `play`: Command the player to play.
+        - `pause`: Command the player to pause.
+        - `play-pause`: Command the player to toggle between play/pause.
+        - `stop`: Command the player to stop.
+        - `next`: Command the player to skip to the next track.
+        - `previous`: Command the player to skip to the previous track.
+        - `status`: Get the play status of the player. Either "Playing", "Paused", or "Stopped".
+        - `metadata`: Print the metadata for the current track. You can provide an optional KEY (MPRIS and common Xesam conventions) in the `option` parameter, which will print only this value from the metadata.
+        - `volume`: Print or set the volume level. To set the volume, provide the `option` parameter with a value within the range of 0.0 to 1.0.
+        - `position`: Print or set the position. To set the position, provide the `option` parameter with a value to go to the specified position or seek forward or backward by an OFFSET in seconds. Examples: `30-` go back 30 seconds, `30+` go forward 30 seconds, `30` seek to the position at 30 seconds.
+        - `loop`: Print or set the loop status. To set the loop, provide the `option` parameter with either `None`, `Track`, or `Playlist`.
+        - `shuffle`: Print or set the shuffle status. To set the shuffle, provide the `option` parameter with either `On` or `Off`.
+
+    option:
+      type: string
+      description: |
+        An optional additional parameter that may be used for specific commands:
+        - For the command `metadata`, you can provide an optional KEY, which will print only this value from the metadata. It follows MPRIS and common Xesam conventions.
+        - For the command `volume`, you can provide a value within the range of 0.0 to 1.0.
+        - For the command `position`, you can provide a value to go to the specified position or seek forward or backward by an offset in seconds. Examples: `30-` to go back 30 seconds, `30+` to go forward 30 seconds, `30` to seek to the position at 30 seconds.
+        - For the command `loop`, you can provide the value `None`, `Track`, or `Playlist`.
+        - For the command `shuffle`, you can provide the value `On` or `Off`.
+    player:
+      type: string
+      description: |
+        An optional parameter with the ID of a specific player, which can be obtained through the `list` command.
+  required:
+    - command
