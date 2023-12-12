@@ -13,7 +13,7 @@
 (let [action (get parameters "command")
       option (get parameters "option")
       player (get parameters "player")
-      valid-actions ["list" "volume" "position" "play" "pause" "play-pause" "stop" "next" "previous" "status" "metadata"]]
+      valid-actions ["list" "volume" "position" "shuffle" "loop" "play" "pause" "play-pause" "stop" "next" "previous" "status" "metadata"]]
   (cond
     (= action "list")
       (:output (run-command nil "-l" player))
